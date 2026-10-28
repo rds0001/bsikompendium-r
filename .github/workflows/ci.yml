@@ -6,6 +6,7 @@ jobs:
   check:
     runs-on: ${{ matrix.config.os }}
     strategy:
+      fail-fast: false
       matrix:
         config:
           - {os: ubuntu-latest, r: release}
@@ -30,7 +31,9 @@ jobs:
       - name: Dependencies
         shell: Rscript {0}
         run: install.packages('jsonlite', repos='https://cloud.r-project.org')
-      - run: R CMD build .
+      - name: Build tarball
+        shell: bash
+        run: R CMD build .
       - name: Check tarball
         shell: bash
         run: R CMD check --as-cran --no-manual bsikompendium_*.tar.gz
