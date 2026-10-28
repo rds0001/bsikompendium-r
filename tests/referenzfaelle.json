@@ -1,0 +1,2132 @@
+[
+  {
+    "fall_id": "schutz_maximum",
+    "funktion": "bestimme_schutzbedarf",
+    "eingaben": {
+      "werte": [
+        "NORMAL",
+        "HOCH"
+      ],
+      "grundwert": "vertraulichkeit"
+    },
+    "erwartung": {
+      "befund": "HOCH"
+    },
+    "herleitung": "BSI 200-2, Schutzbedarfsfeststellung: Maximumprinzip; offene Werte nicht als NORMAL behandeln."
+  },
+  {
+    "fall_id": "schutz_offen",
+    "funktion": "bestimme_schutzbedarf",
+    "eingaben": {
+      "werte": [
+        "NORMAL",
+        null
+      ],
+      "grundwert": "vertraulichkeit"
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "BSI 200-2, Schutzbedarfsfeststellung: Maximumprinzip; offene Werte nicht als NORMAL behandeln."
+  },
+  {
+    "fall_id": "schutz_obergrenze",
+    "funktion": "bestimme_schutzbedarf",
+    "eingaben": {
+      "werte": [
+        "SEHR_HOCH",
+        null
+      ],
+      "grundwert": "vertraulichkeit"
+    },
+    "erwartung": {
+      "befund": "SEHR_HOCH"
+    },
+    "herleitung": "BSI 200-2, Schutzbedarfsfeststellung: Maximumprinzip; offene Werte nicht als NORMAL behandeln."
+  },
+  {
+    "fall_id": "kumulation",
+    "funktion": "bestimme_schutzbedarf",
+    "eingaben": {
+      "werte": [
+        "NORMAL"
+      ],
+      "grundwert": "verfuegbarkeit",
+      "anpassung": "HOCH",
+      "effekt": "KUMULATION",
+      "begruendung": "Gemeinsamer Ausfall mehrerer kritischer Prozesse."
+    },
+    "erwartung": {
+      "befund": "HOCH"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "verteilung",
+    "funktion": "bestimme_schutzbedarf",
+    "eingaben": {
+      "werte": [
+        "HOCH"
+      ],
+      "grundwert": "verfuegbarkeit",
+      "anpassung": "NORMAL",
+      "effekt": "VERTEILUNG",
+      "begruendung": "Unabhängige Redundanz fachlich belegt."
+    },
+    "erwartung": {
+      "befund": "NORMAL"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "kumulation_senkt",
+    "funktion": "bestimme_schutzbedarf",
+    "eingaben": {
+      "werte": [
+        "HOCH"
+      ],
+      "grundwert": "verfuegbarkeit",
+      "anpassung": "NORMAL",
+      "effekt": "KUMULATION",
+      "begruendung": "Unzulässige Senkung"
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "risikoanlass_normal",
+    "funktion": "pruefe_risikoanalysebedarf",
+    "eingaben": {
+      "schutzbedarf": {
+        "vertraulichkeit": "NORMAL",
+        "integritaet": "NORMAL",
+        "verfuegbarkeit": "NORMAL"
+      },
+      "hinreichend_modelliert": true,
+      "typisches_szenario": true
+    },
+    "erwartung": {
+      "befund": "KEIN_ZUSAETZLICHER_ANLASS"
+    },
+    "herleitung": "BSI 200-3, 1.2: ODER aus hohem Schutzbedarf, unzureichender Modellierbarkeit, atypischem Szenario."
+  },
+  {
+    "fall_id": "risikoanlass_hoch",
+    "funktion": "pruefe_risikoanalysebedarf",
+    "eingaben": {
+      "schutzbedarf": {
+        "vertraulichkeit": "HOCH"
+      },
+      "hinreichend_modelliert": null,
+      "typisches_szenario": null
+    },
+    "erwartung": {
+      "befund": "ERFORDERLICH"
+    },
+    "herleitung": "BSI 200-3, 1.2: ODER aus hohem Schutzbedarf, unzureichender Modellierbarkeit, atypischem Szenario."
+  },
+  {
+    "fall_id": "risikoanlass_modell",
+    "funktion": "pruefe_risikoanalysebedarf",
+    "eingaben": {
+      "schutzbedarf": {},
+      "hinreichend_modelliert": false,
+      "typisches_szenario": null
+    },
+    "erwartung": {
+      "befund": "ERFORDERLICH"
+    },
+    "herleitung": "BSI 200-3, 1.2: ODER aus hohem Schutzbedarf, unzureichender Modellierbarkeit, atypischem Szenario."
+  },
+  {
+    "fall_id": "risikoanlass_atypisch",
+    "funktion": "pruefe_risikoanalysebedarf",
+    "eingaben": {
+      "schutzbedarf": {},
+      "hinreichend_modelliert": null,
+      "typisches_szenario": false
+    },
+    "erwartung": {
+      "befund": "ERFORDERLICH"
+    },
+    "herleitung": "BSI 200-3, 1.2: ODER aus hohem Schutzbedarf, unzureichender Modellierbarkeit, atypischem Szenario."
+  },
+  {
+    "fall_id": "risikoanlass_offen",
+    "funktion": "pruefe_risikoanalysebedarf",
+    "eingaben": {
+      "schutzbedarf": {},
+      "hinreichend_modelliert": true,
+      "typisches_szenario": true
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "BSI 200-3, 1.2: ODER aus hohem Schutzbedarf, unzureichender Modellierbarkeit, atypischem Szenario."
+  },
+  {
+    "fall_id": "matrix_VERNACHLAESSIGBAR_SELTEN",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SELTEN",
+      "schaden": "VERNACHLAESSIGBAR",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "GERING"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_VERNACHLAESSIGBAR_MITTEL",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "MITTEL",
+      "schaden": "VERNACHLAESSIGBAR",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "GERING"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_VERNACHLAESSIGBAR_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "HAEUFIG",
+      "schaden": "VERNACHLAESSIGBAR",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "GERING"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_VERNACHLAESSIGBAR_SEHR_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SEHR_HAEUFIG",
+      "schaden": "VERNACHLAESSIGBAR",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "GERING"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BEGRENZT_SELTEN",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SELTEN",
+      "schaden": "BEGRENZT",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "GERING"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BEGRENZT_MITTEL",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "MITTEL",
+      "schaden": "BEGRENZT",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "GERING"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BEGRENZT_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "HAEUFIG",
+      "schaden": "BEGRENZT",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "MITTEL"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BEGRENZT_SEHR_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SEHR_HAEUFIG",
+      "schaden": "BEGRENZT",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "HOCH"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BETRAECHTLICH_SELTEN",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SELTEN",
+      "schaden": "BETRAECHTLICH",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "MITTEL"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BETRAECHTLICH_MITTEL",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "MITTEL",
+      "schaden": "BETRAECHTLICH",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "MITTEL"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BETRAECHTLICH_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "HAEUFIG",
+      "schaden": "BETRAECHTLICH",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "HOCH"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_BETRAECHTLICH_SEHR_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SEHR_HAEUFIG",
+      "schaden": "BETRAECHTLICH",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "SEHR_HOCH"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_EXISTENZBEDROHEND_SELTEN",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SELTEN",
+      "schaden": "EXISTENZBEDROHEND",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "MITTEL"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_EXISTENZBEDROHEND_MITTEL",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "MITTEL",
+      "schaden": "EXISTENZBEDROHEND",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "HOCH"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_EXISTENZBEDROHEND_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "HAEUFIG",
+      "schaden": "EXISTENZBEDROHEND",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "SEHR_HOCH"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_EXISTENZBEDROHEND_SEHR_HAEUFIG",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "SEHR_HAEUFIG",
+      "schaden": "EXISTENZBEDROHEND",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "SEHR_HOCH"
+    },
+    "herleitung": "BSI 200-3, Abbildung 3, PDF-Seite 27, visuell abgelesene Beispielmatrix."
+  },
+  {
+    "fall_id": "matrix_offen",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": null,
+      "schaden": "BEGRENZT",
+      "matrix": "BSI_200_3_BEISPIEL_2017"
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "matrix_eigen",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "selten",
+      "schaden": "teuer",
+      "matrix": {
+        "id": "intern",
+        "haeufigkeiten": [
+          "selten"
+        ],
+        "schaeden": [
+          "teuer"
+        ],
+        "werte": [
+          [
+            "HOCH"
+          ]
+        ]
+      }
+    },
+    "erwartung": {
+      "befund": "HOCH"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "matrix_unvollstaendig",
+    "funktion": "bewerte_risiko",
+    "eingaben": {
+      "haeufigkeit": "selten",
+      "schaden": "teuer",
+      "matrix": {
+        "id": "intern",
+        "haeufigkeiten": [
+          "selten"
+        ],
+        "schaeden": [
+          "teuer"
+        ],
+        "werte": []
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "check_gut",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "CON.10.A7.P1": {
+          "relevant": true,
+          "umgesetzt": true,
+          "wirksam": true,
+          "angemessen": true
+        },
+        "CON.10.A7.P2": {
+          "relevant": true,
+          "umgesetzt": true,
+          "wirksam": true,
+          "angemessen": true
+        }
+      },
+      "anwendbar": true,
+      "begruendung": ""
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_teil",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "CON.10.A7.P1": {
+          "relevant": true,
+          "umgesetzt": true,
+          "wirksam": true,
+          "angemessen": true
+        },
+        "CON.10.A7.P2": {
+          "relevant": true,
+          "umgesetzt": false
+        }
+      },
+      "anwendbar": true,
+      "begruendung": ""
+    },
+    "erwartung": {
+      "befund": "TEILWEISE_ERFUELLT"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_offen",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "CON.10.A7.P1": {
+          "relevant": true,
+          "umgesetzt": true,
+          "wirksam": true,
+          "angemessen": true
+        }
+      },
+      "anwendbar": true,
+      "begruendung": ""
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_negativ",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "CON.10.A7.P1": {
+          "relevant": true,
+          "wirksam": false
+        },
+        "CON.10.A7.P2": {
+          "relevant": true,
+          "angemessen": false
+        }
+      },
+      "anwendbar": true,
+      "begruendung": ""
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_anwendbarkeit",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {},
+      "anwendbar": null,
+      "begruendung": ""
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_ausgeschlossen",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {},
+      "anwendbar": false,
+      "begruendung": "Keine entsprechende Webanwendung"
+    },
+    "erwartung": {
+      "befund": "NICHT_ANWENDBAR"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_bloecke_ausgeschlossen",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "CON.10.A7.P1": {
+          "relevant": false,
+          "begruendung": "Bedingung trifft im Einzelfall nicht zu"
+        },
+        "CON.10.A7.P2": {
+          "relevant": false,
+          "begruendung": "Bedingung trifft im Einzelfall nicht zu"
+        }
+      },
+      "anwendbar": true,
+      "begruendung": ""
+    },
+    "erwartung": {
+      "befund": "NICHT_ANWENDBAR"
+    },
+    "herleitung": "BSI 200-2, 8.4.2; dokumentierte blockweise Aggregation ohne Mehrheitsregel."
+  },
+  {
+    "fall_id": "check_entfallen",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "APP.2.2.A2",
+      "bewertungen": {},
+      "anwendbar": true
+    },
+    "erwartung": {
+      "befund": "NICHT_ANWENDBAR"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "check_falscher_block",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "FREMD.P1": {
+          "relevant": true,
+          "umgesetzt": true,
+          "wirksam": true,
+          "angemessen": true
+        }
+      },
+      "anwendbar": true
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "check_ohne_begruendung",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {},
+      "anwendbar": false
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "abweichung_RISIKOAKZEPTANZ",
+    "funktion": "pruefe_abweichung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "art": "RISIKOAKZEPTANZ",
+      "begruendung": "Dokumentierte Einzelfallbewertung",
+      "gefaehrdungsbewertungen": {
+        "G 0.28": true
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ZULAESSIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "abweichung_ALTERNATIVMASSNAHME",
+    "funktion": "pruefe_abweichung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "art": "ALTERNATIVMASSNAHME",
+      "begruendung": "Dokumentierte Einzelfallbewertung",
+      "gefaehrdungsbewertungen": {
+        "G 0.28": true
+      },
+      "alternativmassnahme": "Gleichwertiger Schutz",
+      "gleichwertig": true,
+      "basis_ausnahme_begruendet": true
+    },
+    "erwartung": {
+      "befund": "ZULAESSIG_BEGRUENDET"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "abweichung_NICHT_RELEVANT",
+    "funktion": "pruefe_abweichung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "art": "NICHT_RELEVANT",
+      "begruendung": "Dokumentierte Einzelfallbewertung",
+      "gefaehrdungsbewertungen": {
+        "G 0.28": true
+      }
+    },
+    "erwartung": {
+      "befund": "ZULAESSIG_BEGRUENDET"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "behandlung_VERMEIDUNG",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "VERMEIDUNG",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": true,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "NACHVOLLZIEHBAR_ABGESCHLOSSEN"
+    },
+    "herleitung": "BSI 200-3, Risikobehandlung und Konsolidierung; vollständige explizite Nachweise."
+  },
+  {
+    "fall_id": "behandlung_ohne_zustimmung_VERMEIDUNG",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "VERMEIDUNG",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": false,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "BEHANDLUNG_OFFEN"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "behandlung_REDUKTION",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "REDUKTION",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": true,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "NACHVOLLZIEHBAR_ABGESCHLOSSEN"
+    },
+    "herleitung": "BSI 200-3, Risikobehandlung und Konsolidierung; vollständige explizite Nachweise."
+  },
+  {
+    "fall_id": "behandlung_ohne_zustimmung_REDUKTION",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "REDUKTION",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": false,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "BEHANDLUNG_OFFEN"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "behandlung_TRANSFER",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "TRANSFER",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": true,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "NACHVOLLZIEHBAR_ABGESCHLOSSEN"
+    },
+    "herleitung": "BSI 200-3, Risikobehandlung und Konsolidierung; vollständige explizite Nachweise."
+  },
+  {
+    "fall_id": "behandlung_ohne_zustimmung_TRANSFER",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "TRANSFER",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": false,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "BEHANDLUNG_OFFEN"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "behandlung_AKZEPTANZ",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "AKZEPTANZ",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": true,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "NACHVOLLZIEHBAR_ABGESCHLOSSEN"
+    },
+    "herleitung": "BSI 200-3, Risikobehandlung und Konsolidierung; vollständige explizite Nachweise."
+  },
+  {
+    "fall_id": "behandlung_ohne_zustimmung_AKZEPTANZ",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "AKZEPTANZ",
+      "restrisiko": "GERING",
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "Beschluss dokumentiert",
+        "leitung_zustimmung": false,
+        "konsolidiert": true,
+        "basis_muss_offen": false,
+        "umgesetzt": true,
+        "wirkung_geprueft": true,
+        "vertrag_geprueft": true,
+        "ursache_entfallen": true
+      }
+    },
+    "erwartung": {
+      "befund": "BEHANDLUNG_OFFEN"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "behandlung_offen",
+    "funktion": "pruefe_risikobehandlung",
+    "eingaben": {
+      "option": "REDUKTION",
+      "restrisiko": null,
+      "akzeptierte_kategorien": [
+        "GERING"
+      ],
+      "angaben": {
+        "begruendung": "In Arbeit"
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "inventar",
+    "funktion": "pruefe_informationsverbund",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung"
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "STRUKTURELL_KONSISTENT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "inventar_beziehung",
+    "funktion": "pruefe_informationsverbund",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung",
+          "abhaengigkeiten": [
+            "fehlt"
+          ]
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "BEZIEHUNG_FEHLT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "inventar_doppelt",
+    "funktion": "pruefe_informationsverbund",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung"
+        },
+        {
+          "id": "web",
+          "typ": "Anwendung"
+        }
+      ]
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "modell_True",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "web",
+          "baustein_id": "APP.3.1",
+          "fachlich_passend": true
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "ZUORDNUNGEN_BESTAETIGT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "modell_False",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "web",
+          "baustein_id": "APP.3.1",
+          "fachlich_passend": false
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "MODELLIERUNGSLUECKEN"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "modell_None",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "web",
+          "baustein_id": "APP.3.1",
+          "fachlich_passend": null
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "ntp_modell_Anwendung",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "ntp",
+          "typ": "Anwendung"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "ntp",
+          "baustein_id": "OPS.1.2.6",
+          "fachlich_passend": true
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "ZUORDNUNGEN_BESTAETIGT"
+    },
+    "herleitung": "Errata 26.03.2026: OPS.1.2.6 gilt für Anwendungen und IT-Systeme."
+  },
+  {
+    "fall_id": "ntp_modell_IT-System",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "ntp",
+          "typ": "IT-System"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "ntp",
+          "baustein_id": "OPS.1.2.6",
+          "fachlich_passend": true
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "ZUORDNUNGEN_BESTAETIGT"
+    },
+    "herleitung": "Errata 26.03.2026: OPS.1.2.6 gilt für Anwendungen und IT-Systeme."
+  },
+  {
+    "fall_id": "vsa_UNTERNEHMEN",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "iv",
+          "typ": "Informationsverbund"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "iv",
+          "baustein_id": "CON.11.1",
+          "fachlich_passend": true
+        }
+      ],
+      "institution": "UNTERNEHMEN",
+      "unterliegt_vsa": true
+    },
+    "erwartung": {
+      "befund": "MODELLIERUNGSLUECKEN"
+    },
+    "herleitung": "Errata 26.03.2026: VSA-Abgrenzung CON.11.1."
+  },
+  {
+    "fall_id": "vsa_LANDESBEHOERDE",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "iv",
+          "typ": "Informationsverbund"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "iv",
+          "baustein_id": "CON.11.1",
+          "fachlich_passend": true
+        }
+      ],
+      "institution": "LANDESBEHOERDE",
+      "unterliegt_vsa": true
+    },
+    "erwartung": {
+      "befund": "MODELLIERUNGSLUECKEN"
+    },
+    "herleitung": "Errata 26.03.2026: VSA-Abgrenzung CON.11.1."
+  },
+  {
+    "fall_id": "vsa_BUNDESBEHOERDE",
+    "funktion": "pruefe_modellierung",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "iv",
+          "typ": "Informationsverbund"
+        }
+      ],
+      "zuordnungen": [
+        {
+          "objekt_id": "iv",
+          "baustein_id": "CON.11.1",
+          "fachlich_passend": true
+        }
+      ],
+      "institution": "BUNDESBEHOERDE",
+      "unterliegt_vsa": true
+    },
+    "erwartung": {
+      "befund": "ZUORDNUNGEN_BESTAETIGT"
+    },
+    "herleitung": "Errata 26.03.2026: VSA-Abgrenzung CON.11.1."
+  },
+  {
+    "fall_id": "http_body",
+    "funktion": "pruefe_http_datenschutz",
+    "eingaben": {
+      "angaben": {
+        "vertrauliche_daten_im_body": true,
+        "client_cache_verhindert": true,
+        "formulardaten_maskiert": true,
+        "unerwartetes_browser_speichern_verhindert": true,
+        "zugangsdaten_salted_hash": true,
+        "quelltextabruf_geschuetzt": true
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "CON.10.A7 mit Errata 26.03.2026: Request-Body, keine festgeschriebene HTTP-Methode."
+  },
+  {
+    "fall_id": "http_offen",
+    "funktion": "pruefe_http_datenschutz",
+    "eingaben": {
+      "angaben": {}
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "backup_4",
+    "funktion": "pruefe_datensicherung",
+    "eingaben": {
+      "angaben": {
+        "plan_eingehalten": true,
+        "mitarbeitende_informiert": true,
+        "aufgaben_bekannt": true,
+        "tests_regelmaessig": true,
+        "wiederherstellung_erfolgreich": true,
+        "wiederherstellungsdauer": 4,
+        "maximale_dauer": 4
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "CON.3.A5/A15; organisatorische Zeitgrenze hier vier Stunden, inklusive Gleichheit."
+  },
+  {
+    "fall_id": "backup_4.1",
+    "funktion": "pruefe_datensicherung",
+    "eingaben": {
+      "angaben": {
+        "plan_eingehalten": true,
+        "mitarbeitende_informiert": true,
+        "aufgaben_bekannt": true,
+        "tests_regelmaessig": true,
+        "wiederherstellung_erfolgreich": true,
+        "wiederherstellungsdauer": 4.1,
+        "maximale_dauer": 4
+      }
+    },
+    "erwartung": {
+      "befund": "TEILWEISE_ERFUELLT"
+    },
+    "herleitung": "CON.3.A5/A15; organisatorische Zeitgrenze hier vier Stunden, inklusive Gleichheit."
+  },
+  {
+    "fall_id": "backup_None",
+    "funktion": "pruefe_datensicherung",
+    "eingaben": {
+      "angaben": {
+        "plan_eingehalten": true,
+        "mitarbeitende_informiert": true,
+        "aufgaben_bekannt": true,
+        "tests_regelmaessig": true,
+        "wiederherstellung_erfolgreich": true,
+        "wiederherstellungsdauer": null,
+        "maximale_dauer": 4
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "CON.3.A5/A15; organisatorische Zeitgrenze hier vier Stunden, inklusive Gleichheit."
+  },
+  {
+    "fall_id": "passwort_bedingungen",
+    "funktion": "pruefe_passwortgebrauch",
+    "eingaben": {
+      "angaben": {
+        "verbindlich_geregelt": true,
+        "zusatzverfahren_geprueft": true,
+        "mehrfach_verwendet": false,
+        "leicht_erratbar": false,
+        "geheim_gehalten": true,
+        "unbeobachtet_eingegeben": true,
+        "auf_funktionstasten_gespeichert": false,
+        "schriftlich_fixiert": false,
+        "passwortmanager_geprueft": true,
+        "drittanbieter_sync_vorhanden": false,
+        "kompromittierung_oder_verdacht": false
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "ORP.4.A8; nicht eingetretene Bedingungen verlangen keine Folgeangaben."
+  },
+  {
+    "fall_id": "passwort_kompromittiert",
+    "funktion": "pruefe_passwortgebrauch",
+    "eingaben": {
+      "angaben": {
+        "verbindlich_geregelt": true,
+        "zusatzverfahren_geprueft": true,
+        "mehrfach_verwendet": false,
+        "leicht_erratbar": false,
+        "geheim_gehalten": true,
+        "unbeobachtet_eingegeben": true,
+        "auf_funktionstasten_gespeichert": false,
+        "schriftlich_fixiert": false,
+        "passwortmanager_geprueft": true,
+        "drittanbieter_sync_vorhanden": false,
+        "kompromittierung_oder_verdacht": true,
+        "passwort_gewechselt": false
+      }
+    },
+    "erwartung": {
+      "befund": "TEILWEISE_ERFUELLT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "APP.2.2.A1_2015",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.2.2.A1",
+      "angaben": {
+        "funktionsebene_jahr": 2015
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.2.2.A1, direkte Mindestzahl: 2016."
+  },
+  {
+    "fall_id": "APP.2.2.A1_2016",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.2.2.A1",
+      "angaben": {
+        "funktionsebene_jahr": 2016
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.2.2.A1, direkte Mindestzahl: 2016."
+  },
+  {
+    "fall_id": "APP.2.2.A1_None",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.2.2.A1",
+      "angaben": {
+        "funktionsebene_jahr": null
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.2.2.A1, direkte Mindestzahl: 2016."
+  },
+  {
+    "fall_id": "OPS.1.2.6.A11_3",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.6.A11",
+      "angaben": {
+        "genauigkeit_erheblich": true,
+        "unabhaengige_ntp_server": 3
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.6.A11, direkte Mindestzahl: 4."
+  },
+  {
+    "fall_id": "OPS.1.2.6.A11_4",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.6.A11",
+      "angaben": {
+        "genauigkeit_erheblich": true,
+        "unabhaengige_ntp_server": 4
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.6.A11, direkte Mindestzahl: 4."
+  },
+  {
+    "fall_id": "OPS.1.2.6.A11_None",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.6.A11",
+      "angaben": {
+        "genauigkeit_erheblich": true,
+        "unabhaengige_ntp_server": null
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.6.A11, direkte Mindestzahl: 4."
+  },
+  {
+    "fall_id": "DER.3.2.A5_1",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": 1
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, DER.3.2.A5, direkte Mindestzahl: 2."
+  },
+  {
+    "fall_id": "DER.3.2.A5_2",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": 2
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, DER.3.2.A5, direkte Mindestzahl: 2."
+  },
+  {
+    "fall_id": "DER.3.2.A5_None",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": null
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "Kompendium Edition 2023, DER.3.2.A5, direkte Mindestzahl: 2."
+  },
+  {
+    "fall_id": "APP.3.6.A2_0",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.3.6.A2",
+      "angaben": {
+        "zusaetzliche_secondary_server": 0
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.3.6.A2, direkte Mindestzahl: 1."
+  },
+  {
+    "fall_id": "APP.3.6.A2_1",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.3.6.A2",
+      "angaben": {
+        "zusaetzliche_secondary_server": 1
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.3.6.A2, direkte Mindestzahl: 1."
+  },
+  {
+    "fall_id": "APP.3.6.A2_None",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.3.6.A2",
+      "angaben": {
+        "zusaetzliche_secondary_server": null
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.3.6.A2, direkte Mindestzahl: 1."
+  },
+  {
+    "fall_id": "IND.3.2.A6_0",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "IND.3.2.A6",
+      "angaben": {
+        "sicherheitskomponenten_ot": 0
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, IND.3.2.A6, direkte Mindestzahl: 1."
+  },
+  {
+    "fall_id": "IND.3.2.A6_1",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "IND.3.2.A6",
+      "angaben": {
+        "sicherheitskomponenten_ot": 1
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, IND.3.2.A6, direkte Mindestzahl: 1."
+  },
+  {
+    "fall_id": "IND.3.2.A6_None",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "IND.3.2.A6",
+      "angaben": {
+        "sicherheitskomponenten_ot": null
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "Kompendium Edition 2023, IND.3.2.A6, direkte Mindestzahl: 1."
+  },
+  {
+    "fall_id": "grenze_85",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.6.A11",
+      "angaben": {
+        "genauigkeit_erheblich": false
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ANWENDBAR"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.6.A11; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_86",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.6.A11",
+      "angaben": {
+        "unabhaengige_ntp_server": 4
+      }
+    },
+    "erwartung": {
+      "befund": "UNBEKANNT"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.6.A11; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_87",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.4.4.A21",
+      "angaben": {
+        "erhoehtes_fremdeinwirkungsrisiko": true,
+        "schutzbedarf_sehr_hoch": true,
+        "pod_laufzeit_stunden": 24
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.4.4.A21; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_88",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.4.4.A21",
+      "angaben": {
+        "erhoehtes_fremdeinwirkungsrisiko": true,
+        "schutzbedarf_sehr_hoch": true,
+        "pod_laufzeit_stunden": 24.1
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.4.4.A21; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_89",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "APP.4.4.A21",
+      "angaben": {
+        "schutzbedarf_sehr_hoch": false
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ANWENDBAR"
+    },
+    "herleitung": "Kompendium Edition 2023, APP.4.4.A21; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_90",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "SYS.3.2.1.A29",
+      "angaben": {
+        "passwortlaenge": 1
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, SYS.3.2.1.A29; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_91",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "SYS.3.2.1.A29",
+      "angaben": {
+        "passwortlaenge": 64
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, SYS.3.2.1.A29; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_92",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "SYS.3.2.1.A29",
+      "angaben": {
+        "passwortlaenge": 65
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, SYS.3.2.1.A29; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_93",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "SYS.3.2.1.A29",
+      "angaben": {
+        "passwortlaenge": 0
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, SYS.3.2.1.A29; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_94",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "NET.1.1.A4",
+      "angaben": {
+        "firewall_stufen": 2,
+        "paketfilter_externe_dmz": 1
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, NET.1.1.A4; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_95",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "NET.1.1.A4",
+      "angaben": {
+        "firewall_stufen": 1,
+        "paketfilter_externe_dmz": 1
+      }
+    },
+    "erwartung": {
+      "befund": "TEILWEISE_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, NET.1.1.A4; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_96",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "NET.1.2.A28",
+      "angaben": {
+        "managementclients_intern": 1,
+        "managementclients_extern": 1
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, NET.1.2.A28; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_97",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A18",
+      "angaben": {
+        "begehungen_im_jahr": 1,
+        "vorgabe_pro_jahr": 2
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.1.A18; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_98",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A18",
+      "angaben": {
+        "begehungen_im_jahr": 2,
+        "vorgabe_pro_jahr": 2
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.1.A18; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_99",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.2.A9",
+      "angaben": {
+        "loesch_oder_brandvermeidungsanlage": true
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.2.A9; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_100",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.2.A9",
+      "angaben": {
+        "loesch_oder_brandvermeidungsanlage": false,
+        "brandfrueherkennung": true,
+        "personal_geschult": true,
+        "reaktionsplaene": true,
+        "reaktionszeit_sekunden": 180
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.2.A9; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_101",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.2.A9",
+      "angaben": {
+        "loesch_oder_brandvermeidungsanlage": false,
+        "brandfrueherkennung": true,
+        "personal_geschult": true,
+        "reaktionsplaene": true,
+        "reaktionszeit_sekunden": 181
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.2.A9; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_102",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.2.A17",
+      "angaben": {
+        "automatische_schutzreaktion": true
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.2.A17; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_103",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.2.A17",
+      "angaben": {
+        "automatische_schutzreaktion": false,
+        "stelle_staendig_besetzt": true,
+        "kontrollzeit_sekunden": 180
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.2.A17; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_104",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.5.A13",
+      "angaben": {
+        "feuer_minuten": 30,
+        "rauch_minuten": 30
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.5.A13; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_105",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.5.A13",
+      "angaben": {
+        "feuer_minuten": 29,
+        "rauch_minuten": 30
+      }
+    },
+    "erwartung": {
+      "befund": "TEILWEISE_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.5.A13; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_106",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.5.A25",
+      "angaben": {
+        "feuer_minuten": 90,
+        "rauch_minuten": 90,
+        "zuleitung_minuten": 90
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.5.A25; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_107",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.2.A19",
+      "angaben": {
+        "letzte_pruefung": "2024-02-29",
+        "bezugsdatum": "2025-02-28"
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.2.A19; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_108",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "OPS.1.2.2.A19",
+      "angaben": {
+        "letzte_pruefung": "2024-02-29",
+        "bezugsdatum": "2025-03-01"
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, OPS.1.2.2.A19; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_109",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A36",
+      "angaben": {
+        "letzte_pruefung": "2023-10-26",
+        "bezugsdatum": "2026-10-26"
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.1.A36; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_110",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A36",
+      "angaben": {
+        "letzte_pruefung": "2023-10-26",
+        "bezugsdatum": "2026-10-27"
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.1.A36; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_111",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.12.A10",
+      "angaben": {
+        "aenderungsdatum": "2026-01-01",
+        "abschlussdatum": "2026-01-02",
+        "arbeitsdoku_aktualisiert": "2026-01-01",
+        "stammdoku_aktualisiert": "2026-01-30",
+        "letzte_pruefung": "2022-01-01",
+        "bezugsdatum": "2026-01-01"
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.12.A10; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "grenze_112",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.12.A10",
+      "angaben": {
+        "aenderungsdatum": "2026-01-01",
+        "abschlussdatum": "2026-01-02",
+        "arbeitsdoku_aktualisiert": "2026-01-02",
+        "stammdoku_aktualisiert": "2026-01-31",
+        "letzte_pruefung": "2022-01-01",
+        "bezugsdatum": "2026-01-02"
+      }
+    },
+    "erwartung": {
+      "befund": "NICHT_ERFUELLT"
+    },
+    "herleitung": "Kompendium Edition 2023, INF.12.A10; wörtliche Grenz-/Bedingungsregel, Kalenderjahre und vier Wochen = 28 Tage."
+  },
+  {
+    "fall_id": "zahlfehler_True",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": true
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "zahlfehler_2",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": "2"
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "zahlfehler_-1",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": -1
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "zahlfehler_1.5",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "DER.3.2.A5",
+      "angaben": {
+        "teammitglieder": 1.5
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "datumfehler_2025-02-29",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A36",
+      "angaben": {
+        "letzte_pruefung": "2025-02-29",
+        "bezugsdatum": "2026-12-31"
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "datumfehler_2026-1-01",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A36",
+      "angaben": {
+        "letzte_pruefung": "2026-1-01",
+        "bezugsdatum": "2026-12-31"
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "datumfehler_2026-13-01",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A36",
+      "angaben": {
+        "letzte_pruefung": "2026-13-01",
+        "bezugsdatum": "2026-12-31"
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "booleanfehler",
+    "funktion": "pruefe_http_datenschutz",
+    "eingaben": {
+      "angaben": {
+        "vertrauliche_daten_im_body": 1
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "unbekanntes_feld",
+    "funktion": "pruefe_http_datenschutz",
+    "eingaben": {
+      "angaben": {
+        "post": true
+      }
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "unbekannte_id",
+    "funktion": "anforderung",
+    "eingaben": {
+      "anforderung_id": "NICHT.VORHANDEN"
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "inventar_null_liste",
+    "funktion": "pruefe_informationsverbund",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung",
+          "abhaengigkeiten": null
+        }
+      ]
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "check_null_begruendung",
+    "funktion": "pruefe_anforderung",
+    "eingaben": {
+      "anforderung_id": "CON.10.A7",
+      "bewertungen": {
+        "CON.10.A7.P1": {
+          "relevant": true,
+          "umgesetzt": true,
+          "wirksam": true,
+          "angemessen": true,
+          "begruendung": null
+        }
+      },
+      "anwendbar": true
+    },
+    "erwartung": {
+      "fehler": "EINGABE_UNGUELTIG"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "unicode_diagnosen",
+    "funktion": "pruefe_informationsverbund",
+    "eingaben": {
+      "objekte": [
+        {
+          "id": "web",
+          "typ": "Anwendung",
+          "abhaengigkeiten": [
+            "ä",
+            "Z",
+            "a"
+          ]
+        }
+      ]
+    },
+    "erwartung": {
+      "befund": "BEZIEHUNG_FEHLT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  },
+  {
+    "fall_id": "kalender_fruehes_jahr",
+    "funktion": "pruefe_technische_grenzen",
+    "eingaben": {
+      "anforderung_id": "INF.1.A36",
+      "angaben": {
+        "letzte_pruefung": "0001-01-01",
+        "bezugsdatum": "0004-01-01"
+      }
+    },
+    "erwartung": {
+      "befund": "ERFUELLT"
+    },
+    "herleitung": "FACHKONZEPT.md; expliziter Eingabevertrag"
+  }
+]

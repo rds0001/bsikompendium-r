@@ -1,0 +1,24 @@
+{
+  "beispiel": "Synthetischer Dienstleister mit Kundenportal; keine echten Unternehmensdaten",
+  "objekte": [
+    {"id": "verbund", "typ": "Informationsverbund", "abhaengigkeiten": ["portal", "server"]},
+    {"id": "portal", "typ": "Anwendung", "abhaengigkeiten": ["server"]},
+    {"id": "server", "typ": "IT-System"}
+  ],
+  "zuordnungen": [
+    {"objekt_id": "verbund", "baustein_id": "CON.10", "fachlich_passend": true},
+    {"objekt_id": "portal", "baustein_id": "APP.3.1", "fachlich_passend": true},
+    {"objekt_id": "server", "baustein_id": "SYS.1.1", "fachlich_passend": true}
+  ],
+  "schutzbedarf": {"vertraulichkeit": "HOCH", "integritaet": "NORMAL", "verfuegbarkeit": "HOCH"},
+  "hinreichend_modelliert": true,
+  "typisches_szenario": true,
+  "haeufigkeit": "HAEUFIG",
+  "schaden": "BETRAECHTLICH",
+  "matrix": "BSI_200_3_BEISPIEL_2017",
+  "anforderung_id": "CON.10.A7",
+  "bewertungen": {
+    "CON.10.A7.P1": {"relevant": true, "umgesetzt": true, "wirksam": true, "angemessen": true},
+    "CON.10.A7.P2": {"relevant": true, "umgesetzt": false, "wirksam": false, "angemessen": false}
+  }
+}

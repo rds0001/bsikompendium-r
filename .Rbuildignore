@@ -1,0 +1,8 @@
+^bsikompendium_.*\.tar\.gz$
+^.*\.Rcheck$
+^README\.md$
+^NOTICE\.md$
+^LICENSE$
+^\.github$
+^arbeit$
+^cran-comments\.md$

@@ -1,0 +1,87 @@
+{
+  "szenario": "Synthetische Erhebung für Dienstfahrzeug F-01. Ausgewählte Modellierungs-, Risiko- und Fachprüfung; kein vollständiger Fahrzeug-Check.",
+  "zielobjekt_id": "F-01",
+  "modellierung": {
+    "schritt_id": "BSIMODELL.INF.11",
+    "angaben": {
+      "fahrzeuge": {
+        "vollstaendig": true,
+        "objekte": [
+          {
+            "id": "F-01",
+            "bausteine": [
+              "INF.11"
+            ],
+            "art": "LAND",
+            "autonom": false,
+            "ferngesteuert": false,
+            "spezieller_einsatz": false,
+            "zusaetze": {
+              "objekte": [],
+              "vollstaendig": true
+            },
+            "ivn": {
+              "vollstaendig": true,
+              "objekte": [
+                {
+                  "id": "F-01-CAN",
+                  "abgegrenzt": true
+                }
+              ]
+            },
+            "komponenten": {
+              "objekte": [],
+              "vollstaendig": true
+            },
+            "aussonderung": false,
+            "vernichtung": {
+              "objekte": [],
+              "vollstaendig": true
+            },
+            "infrastrukturgrenze": true
+          }
+        ]
+      }
+    }
+  },
+  "analysebedarf": {
+    "schutzbedarf": {
+      "vertraulichkeit": "HOCH",
+      "integritaet": "NORMAL",
+      "verfuegbarkeit": "NORMAL"
+    },
+    "hinreichend_modelliert": null,
+    "typisches_szenario": true
+  },
+  "risikoeinstufung": {
+    "haeufigkeit": "HAEUFIG",
+    "schaden": "BETRAECHTLICH",
+    "matrix": "BSI_200_3_BEISPIEL_2017"
+  },
+  "fachpruefung": {
+    "anforderung_id": "INF.11.A12",
+    "angaben": {
+      "bodenfahrzeug": true,
+      "bewachung_sichergestellt": false,
+      "alarm_vorhanden": true,
+      "wegfahrsperre_vorhanden": true,
+      "verlassen": {
+        "vollstaendig": true,
+        "objekte": [
+          {
+            "id": "F-01-Abstellung-1",
+            "bewacht": false,
+            "alarm_aktiv": true,
+            "wegfahrsperre_aktiv": true
+          },
+          {
+            "id": "F-01-Abstellung-2",
+            "bewacht": false,
+            "alarm_aktiv": false,
+            "wegfahrsperre_aktiv": true
+          }
+        ]
+      }
+    }
+  }
+}
