@@ -22,6 +22,8 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
     steps:
       - uses: actions/checkout@v7
+        with:
+          path: source
       - name: Local directories
         shell: bash
         run: mkdir -p arbeit/tmp/library
@@ -33,7 +35,7 @@ jobs:
         run: install.packages('jsonlite', repos='https://cloud.r-project.org')
       - name: Build tarball
         shell: bash
-        run: R CMD build .
+        run: R CMD build source
       - name: Check tarball
         shell: bash
         run: R CMD check --as-cran --no-manual bsikompendium_*.tar.gz
